@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ex_14_10_11</string>
+    <string name="btn">통화기록 가져오기</string>
 </resources>
