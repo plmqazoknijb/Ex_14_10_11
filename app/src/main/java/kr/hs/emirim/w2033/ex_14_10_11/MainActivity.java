@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = resolver.query(CallLog.Calls.CONTENT_URI, callSet,null,null,null);
         if(cursor == null)
             return "통화기록이 전혀없음";
+
             StringBuffer callBuff = new StringBuffer();
             callBuff.append("\n 날짜: 구분: 전화번호: 통화시간\n\n");
             cursor.moveToFirst();
@@ -46,8 +47,16 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String strDate = dateFormat.format(new Double(callDate));
                 callBuff.append(strDate + ":"); //날짜 값 누적
+                if(cursor.getInt(1) == CallLog.Calls.INCOMING_TYPE) {
+                    callBuff.append("착신 :");
+                }else{
+                    callBuff.append("발신 :");
+                }
 
-            }while(cursor.moveToFirst());
+                callBuff.append(cursor.getString(2) + ":");
+                callBuff.append(cursor.getString(3) + "초\n");
+            }while(cursor.moveToNext());
+            cursor.close();
 
         return callBuff.toString();
 
