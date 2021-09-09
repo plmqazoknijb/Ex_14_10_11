@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             return "통화기록이 전혀없음";
 
             StringBuffer callBuff = new StringBuffer();
-            callBuff.append("\n 날짜: 구분: 전화번호: 통화시간\n\n");
+            callBuff.append("\n 날짜 : 구분: 전화번호: 통화시간\n\n");
             cursor.moveToFirst();
             do{
                 long callDate = cursor.getLong(0);
